@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Use pnpm exec to run the local lint-staged binary. pnpx --no-install
+# can be unsupported in some pnpm versions and causes the 'Unknown option'
+# error. pnpm exec will run the installed binary without installing.
+pnpm exec -- lint-staged
