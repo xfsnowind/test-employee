@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "cypress", "@testing-library/jest-dom"]
   },
   "include": ["src", "vite.config.ts", "cypress/**/*.ts"]
 }
