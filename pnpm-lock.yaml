@@ -86,7 +86,10 @@ importers:
         version: 16.1.6
       oxlint:
         specifier: ^1.14.0
-        version: 1.14.0
+        version: 1.14.0(oxlint-tsgolint@0.1.5)
+      oxlint-tsgolint:
+        specifier: ^0.1.5
+        version: 0.1.5
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -615,6 +618,36 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@oxlint-tsgolint/darwin-arm64@0.1.5':
+    resolution: {integrity: sha512-OdyxbEWtotCM65t/QXllGpYr36ZxkTpIrIR8WLMKhoaEOgv3hV09UqnuaPv9oZV6+BBHdv+PK/1LOBd0e5/Rcw==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint-tsgolint/darwin-x64@0.1.5':
+    resolution: {integrity: sha512-2VJe6nlEjQZ5+TC97eGLhLuosfkGfIdoUYdyQcY+L1lpJKoacOAGd8283+NaBNk/yUiHEEcEzBzObPDhNr+A3g==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint-tsgolint/linux-arm64@0.1.5':
+    resolution: {integrity: sha512-BwisHOTGq7/epRpbNLP2+cyueOJwPNk6c7jtopYizkUdHBinHBOLjg2ZoVKb16O+whXTluwU8Jc2Hm84Q8jnkQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint-tsgolint/linux-x64@0.1.5':
+    resolution: {integrity: sha512-fywOxWPQbuU290uk4MGifbG4IJBjA7PRAHZEriAEmsMI71neJ6w9LrTJtfVB2S7Yn0QSiPNl+rg3YUDDwOQKaw==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint-tsgolint/win32-arm64@0.1.5':
+    resolution: {integrity: sha512-zVq6YOzElPwBxZS8Wv6IbtDgKXMGtPUWsrnQeKsAXUmq6fVtlY+fN7ZmNefQtrw7B5MWzih1r1podHCq6W8iAA==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint-tsgolint/win32-x64@0.1.5':
+    resolution: {integrity: sha512-Ym0XlvJ6RgWeJJZOEI95E9UPUd9OCjCbtkD319XceHpzavYe+TUI+K5fuiS8qLxE5yPPRycAVxINe08POk0IzQ==}
+    cpu: [x64]
+    os: [win32]
 
   '@oxlint/darwin-arm64@1.14.0':
     resolution: {integrity: sha512-rcTw0QWeOc6IeVp+Up7WtcwdS9l4j7TOq4tihF0Ud/fl+VUVdvDCPuZ9QTnLXJhwMXiyQRWdxRyI6XBwf80ncQ==}
@@ -2290,6 +2323,10 @@ packages:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
 
+  oxlint-tsgolint@0.1.5:
+    resolution: {integrity: sha512-bO9T6bF/gyt3Jv/zbEOj4h32qPqLOZVJ+vy7Fu46jwzrfxa5cVJ05GBgGGvBTeXlNSEpr2sU/KFvNSDlROznmA==}
+    hasBin: true
+
   oxlint@1.14.0:
     resolution: {integrity: sha512-oo0nq3zF9hmgATGc9esoMahLuEESOodUxEDeHDA2K7tbYcSfcmReE9G2QNppnq9rOSQHLTwlMtzGAjjttYaufQ==}
     engines: {node: '>=8.*'}
@@ -3586,6 +3623,24 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
+
+  '@oxlint-tsgolint/darwin-arm64@0.1.5':
+    optional: true
+
+  '@oxlint-tsgolint/darwin-x64@0.1.5':
+    optional: true
+
+  '@oxlint-tsgolint/linux-arm64@0.1.5':
+    optional: true
+
+  '@oxlint-tsgolint/linux-x64@0.1.5':
+    optional: true
+
+  '@oxlint-tsgolint/win32-arm64@0.1.5':
+    optional: true
+
+  '@oxlint-tsgolint/win32-x64@0.1.5':
+    optional: true
 
   '@oxlint/darwin-arm64@1.14.0':
     optional: true
@@ -5491,7 +5546,16 @@ snapshots:
       object-keys: 1.1.1
       safe-push-apply: 1.0.0
 
-  oxlint@1.14.0:
+  oxlint-tsgolint@0.1.5:
+    optionalDependencies:
+      '@oxlint-tsgolint/darwin-arm64': 0.1.5
+      '@oxlint-tsgolint/darwin-x64': 0.1.5
+      '@oxlint-tsgolint/linux-arm64': 0.1.5
+      '@oxlint-tsgolint/linux-x64': 0.1.5
+      '@oxlint-tsgolint/win32-arm64': 0.1.5
+      '@oxlint-tsgolint/win32-x64': 0.1.5
+
+  oxlint@1.14.0(oxlint-tsgolint@0.1.5):
     optionalDependencies:
       '@oxlint/darwin-arm64': 1.14.0
       '@oxlint/darwin-x64': 1.14.0
@@ -5501,6 +5565,7 @@ snapshots:
       '@oxlint/linux-x64-musl': 1.14.0
       '@oxlint/win32-arm64': 1.14.0
       '@oxlint/win32-x64': 1.14.0
+      oxlint-tsgolint: 0.1.5
 
   p-limit@3.1.0:
     dependencies:
