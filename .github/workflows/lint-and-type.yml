@@ -1,0 +1,34 @@
+name: CI — typecheck & lint
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Enable Corepack and prepare pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck (tsc)
+        run: pnpm run typecheck
+
+      - name: Lint (oxlint then eslint)
+        run: pnpm run lint
