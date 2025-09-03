@@ -1,20 +1,14 @@
 import { openDB, type IDBPDatabase } from 'idb';
 import { v4 as uuidv4 } from 'uuid';
+import { EmployeeFormValues } from './employee.constants';
+
+export type Employee = EmployeeFormValues & { id: string };
 
 // Define the DB schema
 type EmployeeDB = {
   employees: {
     key: string; // uuid
-    value: {
-      id: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      phone: string;
-      gender: string;
-      dateOfBirth: string; // ISO date
-      joinedDate: string; // ISO date
-    };
+    value: Employee;
     indexes: { 'by-email': string };
   };
 };

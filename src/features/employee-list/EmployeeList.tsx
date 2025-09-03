@@ -1,28 +1,18 @@
-import React from 'react';
-import {
-  Box,
-  Button,
-  IconButton,
-  LinearProgress,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { useSearchParams } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useEmployees, Employee } from './queries';
-import { deleteEmployee } from '../../lib/indexedDb';
+import { useEmployeesQuery } from '../../api/queries';
+import AddEmployeeDrawer from './AddEmployeeDrawer';
+import { Employee } from '../../lib/indexedDb';
 
 export default function EmployeeList() {
-  const { data = [], isLoading, refetch } = useEmployees();
+  const { data = [], isLoading } = useEmployeesQuery();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const showAdd = searchParams.get('type') === 'add';
 
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this employee?')) return;
-    await deleteEmployee(id);
-    refetch();
-  };
-
-  const columns: GridColDef[] = [
+  const columns: GridColDef<Employee>[] = [
     { field: 'firstName', headerName: 'First name', flex: 1 },
     { field: 'lastName', headerName: 'Last name', flex: 1 },
     { field: 'email', headerName: 'Email', flex: 1.5 },
@@ -41,6 +31,9 @@ export default function EmployeeList() {
         return (
           <Stack
             direction="row"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
             spacing={1}
           >
             <IconButton
@@ -54,7 +47,7 @@ export default function EmployeeList() {
               size="small"
               aria-label="delete"
               title="Delete"
-              onClick={() => handleDelete(id)}
+              // onClick={() => handleDelete(id)}
             >
               <DeleteIcon fontSize="small" />
             </IconButton>
@@ -63,9 +56,6 @@ export default function EmployeeList() {
       },
     },
   ];
-
-  // DataGrid expects rows with id field
-  const rows: Employee[] = (data || []).map((r) => ({ ...r }));
 
   return (
     <Box sx={{ height: 600, width: '100%' }}>
@@ -77,10 +67,16 @@ export default function EmployeeList() {
         >
           Employee Form
         </Typography>
-        <Button variant="contained">Add Employee</Button>
+        <Button
+          variant="contained"
+          onClick={() => setSearchParams({ type: 'add' })}
+        >
+          Add Employee
+        </Button>
       </Box>
+      {showAdd && <AddEmployeeDrawer />}
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         loading={isLoading}
         slotProps={{
