@@ -28,31 +28,23 @@ export default function EmployeeList() {
       filterable: false,
       renderCell: (params: GridRenderCellParams) => {
         const id = params.row.id as string;
-        return (
-          <Stack
-            direction="row"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            spacing={1}
+        return [
+          <IconButton
+            size="small"
+            aria-label="edit"
+            title="Edit"
           >
-            <IconButton
-              size="small"
-              aria-label="edit"
-              title="Edit"
-            >
-              <EditIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              size="small"
-              aria-label="delete"
-              title="Delete"
-              // onClick={() => handleDelete(id)}
-            >
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Stack>
-        );
+            <EditIcon fontSize="small" />
+          </IconButton>,
+          <IconButton
+            size="small"
+            aria-label="delete"
+            title="Delete"
+            // onClick={() => handleDelete(id)}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>,
+        ];
       },
     },
   ];

@@ -8,6 +8,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  styled,
 } from '@mui/material';
 
 import { DatePicker } from '@mui/x-date-pickers';
@@ -57,6 +58,7 @@ export default function AddEmployeeDrawer() {
       anchor="right"
       open
       onClose={handleClose}
+      data-testid="AddEmployeeDrawer"
     >
       <Box
         sx={{ width: 480, p: 3 }}
@@ -75,26 +77,24 @@ export default function AddEmployeeDrawer() {
           <form.Field
             name="firstName"
             children={(field) => (
-              <TextField
+              <StyledTextField
                 label="First name"
                 value={field.state.value}
                 onChange={(event) => field.handleChange(event.target.value)}
                 error={field.state.meta.errors.length > 0}
                 helperText={field.state.meta.errors[0]?.message ?? ''}
-                sx={{ '& .MuiFormHelperText-root': { color: 'red' } }}
               />
             )}
           />
           <form.Field
             name="lastName"
             children={(field) => (
-              <TextField
+              <StyledTextField
                 label="Last name"
                 value={field.state.value}
                 onChange={(event) => field.handleChange(event.target.value)}
                 error={field.state.meta.errors.length > 0}
                 helperText={field.state.meta.errors[0]?.message ?? ''}
-                sx={{ '& .MuiFormHelperText-root': { color: 'red' } }}
               />
             )}
           />
@@ -102,28 +102,26 @@ export default function AddEmployeeDrawer() {
           <form.Field
             name="email"
             children={(field) => (
-              <TextField
+              <StyledTextField
                 label="Email"
                 type="email"
                 value={field.state.value}
                 onChange={(event) => field.handleChange(event.target.value)}
                 error={field.state.meta.errors.length > 0}
                 helperText={field.state.meta.errors[0]?.message ?? ''}
-                sx={{ '& .MuiFormHelperText-root': { color: 'red' } }}
               />
             )}
           />
           <form.Field
             name="phone"
             children={(field) => (
-              <TextField
+              <StyledTextField
                 label="Phone"
                 type="tel"
                 value={field.state.value}
                 onChange={(event) => field.handleChange(event.target.value)}
                 error={field.state.meta.errors.length > 0}
                 helperText={field.state.meta.errors[0]?.message ?? ''}
-                sx={{ '& .MuiFormHelperText-root': { color: 'red' } }}
               />
             )}
           />
@@ -220,3 +218,7 @@ export default function AddEmployeeDrawer() {
     </Drawer>
   );
 }
+
+const StyledTextField = styled(TextField)({
+  '& .MuiFormHelperText-root': { color: 'red' },
+});
