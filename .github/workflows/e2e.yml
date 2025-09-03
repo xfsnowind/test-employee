@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Cypress binary
-        run: pnpm exec -- cypress install
-
       - name: Run Cypress E2E (starts dev server via scripts/e2e.sh)
         run: |
           chmod +x ./scripts/e2e.sh

@@ -19,13 +19,8 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
-      - name: Enable Corepack and prepare pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Run unit tests (vitest)
-        run: pnpm run test -- --run
+        run: pnpm run test
