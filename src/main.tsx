@@ -8,5 +8,5 @@ createRoot(container).render(
   <React.StrictMode>
     <CssBaseline />
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

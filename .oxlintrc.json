@@ -1,0 +1,14 @@
+{
+  // Oxlint JSON config. Oxlint accepts comments in the JSON file.
+  "root": true,
+  // Path to tsconfig so oxlint can resolve type-aware rules and import paths
+  "tsconfig": "./tsconfig.json",
+  // Enable broad categories so oxlint checks most rules (except `nursery` which is experimental)
+  "allow": ["correctness", "suspicious", "pedantic", "style", "restriction"],
+  // Plugins to enable. The CLI flags below will also enable them; this keeps the intent in repo.
+  "plugins": ["react", "import", "jsx-a11y", "vitest", "react-perf"],
+  // You can further customize rule-level settings here if needed
+  "rules": {},
+  // Files or globs to ignore (fallback to .eslintignore if present)
+  "ignorePatterns": ["node_modules/**", "dist/**", "coverage/**", ".git/**"]
+}
