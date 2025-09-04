@@ -40,10 +40,7 @@ export async function addEmployee(
   return record;
 }
 
-export async function updateEmployee(
-  id: string,
-  patch: Partial<EmployeeDB['employees']['value']>,
-) {
+export async function updateEmployee(id: string, patch: EmployeeFormValues) {
   const db = await getDb();
   const existing = await db.get('employees', id);
   if (!existing) throw new Error('Employee not found');
