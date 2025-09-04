@@ -58,14 +58,14 @@ describe('indexedDb helpers', () => {
   });
 
   it('adds and returns a new employee with generated id', async () => {
-    const record = await indexedDb.addEmployee(payload as any);
+    const record = await indexedDb.addEmployee(payload);
     expect(record.id).toBeTruthy();
     const stored = await indexedDb.getEmployee(record.id);
     expect(stored).toEqual(record);
   });
 
   it('updates an existing employee', async () => {
-    const added = await indexedDb.addEmployee(payload as any);
+    const added = await indexedDb.addEmployee(payload);
     const updated = await indexedDb.updateEmployee(added.id, {
       ...payload,
       phone: '99999999',
@@ -83,7 +83,7 @@ describe('indexedDb helpers', () => {
   });
 
   it('deletes an employee', async () => {
-    const added = await indexedDb.addEmployee(payload as any);
+    const added = await indexedDb.addEmployee(payload);
     await indexedDb.deleteEmployee(added.id);
     const got = await indexedDb.getEmployee(added.id);
     expect(got).toBeNull();
@@ -103,7 +103,7 @@ describe('indexedDb helpers', () => {
     });
 
     const all = await indexedDb.listEmployees();
-    const ids = all.map((r: any) => r.id);
+    const ids = all.map((r) => r.id);
     expect(ids).toEqual(expect.arrayContaining([a.id, b.id]));
   });
 
