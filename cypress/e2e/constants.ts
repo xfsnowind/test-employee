@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon';
 
 export const mockEmployee = {
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: 'Johnson',
+  lastName: 'Doefield',
   email: 'john.doe@example.com',
   phone: '91234567',
   gender: 'male' as const,
@@ -11,8 +11,8 @@ export const mockEmployee = {
 };
 
 export const mockEmployee2 = {
-  firstName: 'Jane',
-  lastName: 'Smith',
+  firstName: 'Janette',
+  lastName: 'Smithson',
   email: 'jane.smith@example.com',
   phone: '98765432',
   gender: 'female' as const,

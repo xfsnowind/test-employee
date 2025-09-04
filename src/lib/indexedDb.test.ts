@@ -9,8 +9,8 @@ vi.mock('idb', () => ({
 }));
 
 const payload = {
-  firstName: 'Bob',
-  lastName: 'Jones',
+  firstName: 'Robert',
+  lastName: 'Johnson',
   email: 'bob@example.com',
   phone: '91234568',
   gender: 'male' as const,
@@ -93,8 +93,8 @@ describe('indexedDb helpers', () => {
     await indexedDb.clearEmployees();
     const a = await indexedDb.addEmployee(payload);
     const b = await indexedDb.addEmployee({
-      firstName: 'B',
-      lastName: 'B',
+      firstName: 'Barbara',
+      lastName: 'Williams',
       email: 'b@example.com',
       phone: '90000001',
       gender: 'other',
