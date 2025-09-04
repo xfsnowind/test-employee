@@ -15,7 +15,6 @@ import { DateTime } from 'luxon';
 
 import { useForm } from '@tanstack/react-form';
 import {
-  EmployeeFormPossibleValues,
   employeeFormSchema,
   GENDER_VALUES,
   type EmployeeFormValues,
