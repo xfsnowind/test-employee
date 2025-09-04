@@ -52,6 +52,7 @@ export default function EmployeeForm({
         name="firstName"
         children={(field) => (
           <StyledTextField
+            data-testid="firstName-input"
             label="First name"
             value={field.state.value}
             onChange={(event) => field.handleChange(event.target.value)}
@@ -64,6 +65,7 @@ export default function EmployeeForm({
         name="lastName"
         children={(field) => (
           <StyledTextField
+            data-testid="lastName-input"
             label="Last name"
             value={field.state.value}
             onChange={(event) => field.handleChange(event.target.value)}
@@ -77,6 +79,7 @@ export default function EmployeeForm({
         name="email"
         children={(field) => (
           <StyledTextField
+            data-testid="email-input"
             label="Email"
             type="email"
             value={field.state.value}
@@ -90,6 +93,7 @@ export default function EmployeeForm({
         name="phone"
         children={(field) => (
           <StyledTextField
+            data-testid="phone-input"
             label="Phone"
             type="tel"
             value={field.state.value}
@@ -176,6 +180,7 @@ export default function EmployeeForm({
           onClick={onCancel}
           variant="outlined"
           disabled={isSubmitting}
+          data-testid="cancel-employee-button"
         >
           Cancel
         </Button>
@@ -183,6 +188,7 @@ export default function EmployeeForm({
           onClick={form.handleSubmit}
           variant="contained"
           disabled={isSubmitting}
+          data-testid="submit-employee-button"
         >
           {submitButtonText}
         </Button>

@@ -1,22 +1,9 @@
 import '@testing-library/cypress/add-commands';
-import { DateTime } from 'luxon';
 import { addEmployee, clearEmployees } from '../../src/lib/indexedDb';
-
-const mockEmployee = {
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'john.doe@example.com',
-  phone: '91234567',
-  gender: 'male' as const,
-  dateOfBirth: DateTime.fromFormat('1990-01-01', 'yyyy-MM-dd').toJSDate(),
-  joinedDate: DateTime.fromFormat('2020-01-01', 'yyyy-MM-dd').toJSDate(),
-};
+import { mockEmployee } from './constants';
 
 describe('App', () => {
   // clear the database every time
-  beforeEach(() => {
-    clearEmployees();
-  });
   afterEach(() => {
     clearEmployees();
   });
