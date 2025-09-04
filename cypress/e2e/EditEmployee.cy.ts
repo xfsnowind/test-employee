@@ -1,4 +1,3 @@
-import '@testing-library/cypress/add-commands';
 import { addEmployee, clearEmployees } from '../../src/lib/indexedDb';
 import { mockEmployee, mockEmployee2 } from './constants';
 

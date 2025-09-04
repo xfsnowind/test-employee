@@ -5,7 +5,7 @@ const baseUrl = process.env.CYPRESS_BASE_URL ?? 'http://localhost:5173';
 export default defineConfig({
   e2e: {
     baseUrl,
-    supportFile: false,
+    supportFile: 'cypress/support/commands.ts',
     specPattern: 'cypress/e2e/**/*.cy.{js,ts}',
   },
 });

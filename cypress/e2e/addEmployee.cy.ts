@@ -1,4 +1,3 @@
-import '@testing-library/cypress/add-commands';
 import { DateTime } from 'luxon';
 import { mockEmployee } from './constants';
 
