@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { Drawer, Box, Typography, CircularProgress } from '@mui/material';
 import { isEmpty } from 'lodash';
 import { match } from 'ts-pattern';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { type EmployeeFormValues } from '../../lib/employee.constants';
+import {
+  UnsavedChangesMessage,
+  type EmployeeFormValues,
+} from '../../lib/employee.constants';
 import { useUpdateEmployeeMutation } from '../../api/mutations';
 import { useFetchEmployeeDetailQuery } from '../../api/queries';
 import EmployeeForm from '../../components/EmployeeForm';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
 export default function EditEmployeeDrawer({ id }: { id?: string }) {
   const navigate = useNavigate();
@@ -73,6 +78,7 @@ function EditEmployeeDrawerContent({
   employeeId: string;
   handleClose: () => void;
 }) {
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const updateMutation = useUpdateEmployeeMutation();
 
   const handleSubmit = (values: EmployeeFormValues) => {
@@ -88,13 +94,42 @@ function EditEmployeeDrawerContent({
     );
   };
 
+  const handleCancel = (isDirty: boolean) => {
+    if (isDirty) {
+      setShowConfirmDialog(true);
+    } else {
+      handleClose();
+    }
+  };
+
+  const handleConfirm = () => {
+    setShowConfirmDialog(false);
+    handleClose();
+  };
+
+  const handleCancelConfirm = () => {
+    setShowConfirmDialog(false);
+  };
+
   return (
-    <EmployeeForm
-      initialValues={employee}
-      onSubmit={handleSubmit}
-      onCancel={handleClose}
-      submitButtonText="Update"
-      isSubmitting={updateMutation.isPending}
-    />
+    <>
+      <EmployeeForm
+        initialValues={employee}
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+        submitButtonText="Update"
+        isSubmitting={updateMutation.isPending}
+      />
+      {showConfirmDialog && (
+        <ConfirmDialog
+          title="Confirm Close"
+          message={UnsavedChangesMessage}
+          onCancel={handleCancelConfirm}
+          onConfirm={handleConfirm}
+          cancelLabel="Stay"
+          confirmLabel="OK"
+        />
+      )}
+    </>
   );
 }

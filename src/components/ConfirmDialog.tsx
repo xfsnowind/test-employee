@@ -32,21 +32,26 @@ export default function ConfirmDialog({
       open
       onClose={onCancel}
       aria-labelledby="confirm-dialog-title"
-      data-testid="delete-confirm-dialog"
+      data-testid="confirm-dialog"
     >
       {title && <DialogTitle id="confirm-dialog-title">{title}</DialogTitle>}
       <DialogContent>
-        {message && <DialogContentText>{message}</DialogContentText>}
+        {message && (
+          <DialogContentText data-testid="confirm-dialog-message">
+            {message}
+          </DialogContentText>
+        )}
       </DialogContent>
       <DialogActions>
         <Button
           onClick={onCancel}
           disabled={loading}
+          data-testid="confirm-dialog-cancel-button"
         >
           {cancelLabel}
         </Button>
         <Button
-          data-testid="delete-employee-button"
+          data-testid="confirm-dialog-confirm-button"
           onClick={onConfirm}
           disabled={loading}
         >

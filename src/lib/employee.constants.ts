@@ -57,3 +57,6 @@ export type EmployeeFormPossibleValues = Omit<
   dateOfBirth: Pick<EmployeeFormValues, 'dateOfBirth'> | null;
   joinedDate: Pick<EmployeeFormValues, 'joinedDate'> | null;
 };
+
+export const UnsavedChangesMessage =
+  'Form has been modified. You will lose your unsaved changes. Are you sure you want to close this form?';

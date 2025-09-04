@@ -13,7 +13,7 @@ import {
 import { DatePicker } from '@mui/x-date-pickers';
 import { DateTime } from 'luxon';
 
-import { useForm } from '@tanstack/react-form';
+import { useForm, useStore } from '@tanstack/react-form';
 import {
   employeeFormSchema,
   GENDER_VALUES,
@@ -23,7 +23,7 @@ import {
 interface EmployeeFormProps {
   initialValues: EmployeeFormValues;
   onSubmit: (values: EmployeeFormValues) => void;
-  onCancel: () => void;
+  onCancel: (isDirty: boolean) => void;
   submitButtonText?: string;
   isSubmitting?: boolean;
 }
@@ -44,6 +44,13 @@ export default function EmployeeForm({
       onSubmit(value);
     },
   });
+
+  // the persistent isDirty: 'dirty' once changed, even if reverted to the default value
+  const isDirty = useStore(form.store, (state) => state.isDirty);
+
+  const handleCancel = () => {
+    onCancel(isDirty);
+  };
 
   return (
     <Stack spacing={2}>
@@ -176,7 +183,7 @@ export default function EmployeeForm({
         sx={{ mt: 2 }}
       >
         <Button
-          onClick={onCancel}
+          onClick={handleCancel}
           variant="outlined"
           disabled={isSubmitting}
           data-testid="cancel-employee-button"

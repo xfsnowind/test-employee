@@ -7,5 +7,6 @@ export default defineConfig({
     baseUrl,
     supportFile: 'cypress/support/commands.ts',
     specPattern: 'cypress/e2e/**/*.cy.{js,ts}',
+    screenshotOnRunFailure: false,
   },
 });

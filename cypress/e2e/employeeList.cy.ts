@@ -31,8 +31,8 @@ describe('App', () => {
       .find('[title="Delete"]')
       .click();
 
-    cy.findByTestId('delete-confirm-dialog').should('be.visible');
-    cy.findByTestId('delete-employee-button').click();
+    cy.findByTestId('confirm-dialog').should('be.visible');
+    cy.findByTestId('confirm-dialog-confirm-button').click();
 
     cy.get('.MuiDataGrid-virtualScrollerRenderZone')
       .children()
