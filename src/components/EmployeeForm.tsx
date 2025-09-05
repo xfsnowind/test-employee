@@ -45,8 +45,8 @@ export default function EmployeeForm({
     },
   });
 
-  // the persistent isDirty: 'dirty' once changed, even if reverted to the default value
-  const isDirty = useStore(form.store, (state) => state.isDirty);
+  // use the non-persistent isDirty: it's dirty if it's different from defaultValues
+  const isDirty = useStore(form.store, (state) => !state.isDefaultValue);
 
   const handleCancel = () => {
     onCancel(isDirty);

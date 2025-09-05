@@ -32,7 +32,6 @@ export const employeeFormSchema = z
       message: 'Invalid Singapore phone number',
     }),
     gender: z.enum(GENDER_VALUES),
-    // Coerce incoming values to Date so the schema accepts ISO strings, Date objects, etc.
     dateOfBirth: z.date().refine((date) => date < new Date(), {
       message: 'Date of birth cannot be in the future',
     }),

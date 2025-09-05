@@ -187,7 +187,7 @@ describe('Edit Employee Drawer', () => {
     cy.contains(newUnsavedText).should('not.exist');
   });
 
-  it('shows unsaved changes warning when value is same with the default value', () => {
+  it('not shows unsaved changes warning when value is same with the default value', () => {
     cy.visit('/');
     // Find the row with our test employee and click edit
     cy.contains(mockEmployee.email)
@@ -207,16 +207,9 @@ describe('Edit Employee Drawer', () => {
     // Try to cancel - should show confirmation dialog
     cy.findByTestId('cancel-employee-button').click();
 
-    // Should see the confirmation dialog
-    cy.findByTestId('confirm-dialog-message')
-      .contains(UnsavedChangesMessage)
-      .should('be.visible');
-
-    // Click "OK" to close the form
-    cy.findByTestId('confirm-dialog-confirm-button').click();
-
-    // After confirming, the drawer should close
+    // Should not see the confirmation dialog
     cy.findByTestId('EditEmployeeDrawer').should('not.exist');
+    cy.findByTestId('confirm-dialog-message').should('not.exist');
 
     // The original data should still be there (no changes saved)
     cy.contains(mockEmployee.email).should('be.visible');
