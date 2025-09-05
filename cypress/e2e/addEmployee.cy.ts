@@ -28,15 +28,11 @@ describe('Add Employee Drawer', () => {
           // For date pickers, type into the text input the ISO date
           const dob = DateTime.fromJSDate(mockEmployee.dateOfBirth);
           const joined = DateTime.fromJSDate(mockEmployee.joinedDate);
-          cy.get('label')
-            .contains('Date of Birth')
-            .parent()
+          cy.findByTestId('dateOfBirth-input')
             .find('.MuiPickersSectionList-root')
             .type(dob.toFormat('MMddyyyy'));
 
-          cy.get('label')
-            .contains('Joined Date')
-            .parent()
+          cy.findByTestId('joinedDate-input')
             .find('.MuiPickersSectionList-root')
             .type(joined.toFormat('MMddyyyy'));
 

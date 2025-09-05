@@ -143,36 +143,40 @@ export default function EmployeeForm({
       <form.Field
         name="dateOfBirth"
         children={(field) => (
-          <DatePicker
-            label="Date of Birth"
-            value={field.state.value ? DateTime.fromJSDate(field.state.value) : null}
-            onChange={(dt) => field.handleChange(dt ? dt.toJSDate() : null)}
-            slotProps={{
-              textField: {
-                error: field.state.meta.errors.length > 0,
-                helperText: field.state.meta.errors[0]?.message ?? '',
-              },
-            }}
-          />
+          <Box data-testid="dateOfBirth-input">
+            <DatePicker
+              label="Date of Birth"
+              value={field.state.value ? DateTime.fromJSDate(field.state.value) : null}
+              onChange={(dt) => field.handleChange(dt ? dt.toJSDate() : null)}
+              slotProps={{
+                textField: {
+                  error: field.state.meta.errors.length > 0,
+                  helperText: field.state.meta.errors[0]?.message ?? '',
+                },
+              }}
+            />
+          </Box>
         )}
       />
 
       <form.Field
         name="joinedDate"
         children={(field) => (
-          <DatePicker
-            label="Joined Date"
-            value={field.state.value ? DateTime.fromJSDate(field.state.value) : null}
-            onChange={(dateValue) =>
-              field.handleChange(dateValue ? dateValue.toJSDate() : null)
-            }
-            slotProps={{
-              textField: {
-                error: field.state.meta.errors.length > 0,
-                helperText: field.state.meta.errors[0]?.message ?? '',
-              },
-            }}
-          />
+          <Box data-testid="joinedDate-input">
+            <DatePicker
+              label="Joined Date"
+              value={field.state.value ? DateTime.fromJSDate(field.state.value) : null}
+              onChange={(dateValue) =>
+                field.handleChange(dateValue ? dateValue.toJSDate() : null)
+              }
+              slotProps={{
+                textField: {
+                  error: field.state.meta.errors.length > 0,
+                  helperText: field.state.meta.errors[0]?.message ?? '',
+                },
+              }}
+            />
+          </Box>
         )}
       />
 

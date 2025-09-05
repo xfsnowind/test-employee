@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { UnsavedChangesMessage } from '../../src/lib/employee.constants';
 import { addEmployee, clearEmployees } from '../../src/lib/indexedDb';
 import { mockEmployee, mockEmployee2 } from './constants';
@@ -122,6 +123,18 @@ describe('Edit Employee Drawer', () => {
         // Enter invalid phone
         cy.findByTestId('phone-input').find('input').clear().type('123');
 
+        const joined = DateTime.fromJSDate(mockEmployee.joinedDate);
+        const dob = joined.plus({ days: 1 });
+
+        // Change date of birth to after joined date
+        cy.findByTestId('dateOfBirth-input')
+          .find('.MuiPickersSectionList-root')
+          .type(dob.toFormat('MMddyyyy'));
+
+        cy.findByTestId('joinedDate-input')
+          .find('.MuiPickersSectionList-root')
+          .type(joined.toFormat('MMddyyyy'));
+
         // Try to submit
         cy.findByTestId('submit-employee-button').click();
 
@@ -129,6 +142,7 @@ describe('Edit Employee Drawer', () => {
         cy.contains('First name must be at least').should('be.visible');
         cy.contains('Invalid email address').should('be.visible');
         cy.contains('Invalid Singapore phone number').should('be.visible');
+        cy.contains('Joined date must be after Date of Birth').should('be.visible');
       });
   });
 
