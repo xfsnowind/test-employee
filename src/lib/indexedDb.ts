@@ -9,7 +9,7 @@ type EmployeeDB = {
   employees: {
     key: string; // uuid
     value: Employee;
-    indexes: { 'by-email': string };
+    indexes: { id: string };
   };
 };
 
@@ -21,22 +21,23 @@ async function getDb() {
     upgrade(db: IDBPDatabase<EmployeeDB>) {
       if (!db.objectStoreNames.contains('employees')) {
         const store = db.createObjectStore('employees', { keyPath: 'id' });
-        store.createIndex('by-email', 'email', { unique: true });
+        store.createIndex('id', 'id', { unique: true });
       }
     },
   });
 }
 
-export async function addEmployee(
-  employee: Omit<EmployeeDB['employees']['value'], 'id'>,
-) {
+export async function addEmployee(employee: EmployeeFormValues) {
   const db = await getDb();
   const id = uuidv4();
-  const record: EmployeeDB['employees']['value'] = {
-    ...employee,
-    id,
-  } as EmployeeDB['employees']['value'];
-  await db.add('employees', record);
+  const record = { ...employee, id };
+  console.log('before added employee');
+  try {
+    await db.add('employees', record);
+  } catch (e) {
+    console.log('error adding employee', e);
+    throw new Error('Failed to add employee');
+  }
   return record;
 }
 

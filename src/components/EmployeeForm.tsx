@@ -60,6 +60,7 @@ export default function EmployeeForm({
           <StyledTextField
             data-testid="firstName-input"
             label="First name"
+            required
             value={field.state.value}
             onChange={(event) => field.handleChange(event.target.value)}
             error={field.state.meta.errors.length > 0}
@@ -73,6 +74,7 @@ export default function EmployeeForm({
           <StyledTextField
             data-testid="lastName-input"
             label="Last name"
+            required
             value={field.state.value}
             onChange={(event) => field.handleChange(event.target.value)}
             error={field.state.meta.errors.length > 0}
@@ -88,6 +90,7 @@ export default function EmployeeForm({
             data-testid="email-input"
             label="Email"
             type="email"
+            required
             value={field.state.value}
             onChange={(event) => field.handleChange(event.target.value)}
             error={field.state.meta.errors.length > 0}
@@ -102,6 +105,7 @@ export default function EmployeeForm({
             data-testid="phone-input"
             label="Phone"
             type="tel"
+            required
             value={field.state.value}
             onChange={(event) => field.handleChange(event.target.value)}
             error={field.state.meta.errors.length > 0}
